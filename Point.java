@@ -1,6 +1,8 @@
+import java.util.ArrayList;
 public class Point{
   private double x,y;
-  private String name;
+  public String name;
+  public ArrayList<Point> adjl = new ArrayList<Point>();
 
   public String toString(){
     return name+": ("+x+","+y+")";
@@ -16,6 +18,14 @@ public class Point{
 
   public static Point copy(Point p){
     return new Point(p.x,p.y,p.name);
+  }
+
+  public void adjAdd(Point other){
+    adjl.add(other);
+  }
+
+  public boolean adj(Point other){
+    return adjl.indexOf(other)>=0;
   }
 
 

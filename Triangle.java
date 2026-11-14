@@ -4,9 +4,9 @@ public class Triangle{
   private Point v2;
 
   public Triangle( double x0, double y0, double x1, double y1, double x2, double y2){
-    v0=new Point(x0,y0);
-    v1=new Point(x1,y1);
-    v2=new Point(x2,y2);
+    v0=new Point(x0,y0,"");
+    v1=new Point(x1,y1,"");
+    v2=new Point(x2,y2,"");
   }
 
   public Triangle( Point v0,Point v1,Point v2){
@@ -33,14 +33,23 @@ public class Triangle{
 
   public double getPerimeter(){
     return v0.distanceTo(v1)+v1.distanceTo(v2)+v2.distanceTo(v0);
-  } 
+  }
 
   public double area(){
     double a=v0.distanceTo(v1);
     double b=v1.distanceTo(v2);
     double c=v2.distanceTo(v0);
     double s=(a+b+c)/2;
-    return Math.sqrt(s*(s-a)*(s-b)*(s-c));
+    return Math.sqrt(s*(s-a)*(s-b)*(s-c))/6.0;
+  }
+
+  public Point com(){
+    Point co = new Point(0,0,"");
+    co.add(v0);
+    co.add(v1);
+    co.add(v2);
+    co.multiply(1.0/3);
+    return co;
   }
 
   public void setVertex(int v, Point p){
