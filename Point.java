@@ -26,6 +26,18 @@ public class Point{
     x= p.x;
     y= p.y;
   }
+  public static add(Point other){
+    x=x+other.x;
+      y+other.y;
+  }
+  public static multiply(double c){
+    x=c*x;
+    y=c*y;
+  }
+  public static normalize(){
+    a=Math.sqrt(x*x+y*y);
+    multiply(1.0/a);
+  }
   public double getX(){
     return x;
   }
