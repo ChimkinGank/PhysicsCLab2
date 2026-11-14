@@ -10,6 +10,7 @@ public class Driver{
     ArrayList<Point> points = new ArrayList<Point>();
     ArrayList<String> names = new ArrayList<String>();
     ArrayList<Triangle> triangles = new ArrayList<Triangle>();
+    ArrayList<Sector> sectors = new ArrayList<Sector>();
     while (scan.hasNext()) {
     scan.next();
     String name = scan.next();
@@ -54,14 +55,40 @@ while (scan2.hasNextLine()) {
     }
   }
 
+  File file3 = new File("Sectors.txt");
+  Scanner scan3 = new Scanner(file3);
+
+  while (scan3.hasNext()) {
+    String p1 = scan3.next();
+    String p2 = scan3.next();
+    String p3 = scan3.next();
+    double angle = scan3.nextDouble();
+
+    int c1 = names.indexOf(p1);
+    int c2 = names.indexOf(p2);
+    int c3 = names.indexOf(p3);
+
+    sectors.add(new Sector(points.get(c1), points.get(c2), points.get(c3),angle));
+}
+
+
+
   double mass = 0;
   for (Triangle t : triangles) {
     mass+=t.area();
+}
+for (Sector s : sectors) {
+  mass+=s.area();
 }
 Point centroid = new Point(0.0,0.0,"");
 for (Triangle t : triangles) {
   Point temp = t.com();
   temp.multiply(t.area()/mass);
+  centroid.add(temp);
+}
+for (Sector s : sectors) {
+  Point temp = s.com();
+  temp.multiply(s.area()/mass);
   centroid.add(temp);
 }
 

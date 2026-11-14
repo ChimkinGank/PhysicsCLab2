@@ -19,12 +19,28 @@ public class Sector{
   }
 
   public String toString(){
-    return "{"+main.toString()+v1.toString()+angle+"}";
+    return "{"+main.toString()+v1.toString()+v2.toString()+angle+"}";
+  }
+
+  public Point com(){
+    Point temp = new Point(main);
+    Point temp1 = new Point(v1);
+    Point temp2 = new Point(v2);
+    temp.multiply(-1.0);
+    temp1.add(temp);
+    double k = temp1.magnitude();
+    temp2.add(temp);
+    temp1.add(temp2);
+    temp1.normalize();
+    temp1.multiply(4*k*Math.sin(angle/2.0)/(3*angle));
+    temp.multiply(-1.0);
+    temp.add(temp1);
+    return temp;
   }
 
   public double area(){
     double a=main.distanceTo(v1);
-    return a*a*angle;
+    return a*a*angle/2;
   }
 
 

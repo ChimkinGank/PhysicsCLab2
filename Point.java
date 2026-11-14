@@ -28,6 +28,10 @@ public class Point{
     return adjl.indexOf(other)>=0;
   }
 
+  public double magnitude(){
+    return Math.sqrt(x*x+y*y);
+  }
+
 
   public Point(double X, double Y, String name){
     x=X;
@@ -41,7 +45,7 @@ public class Point{
   }
   public void add(Point other){
     x=x+other.x;
-      y=other.y;
+      y=y+other.y;
   }
   public void multiply(double c){
     x=c*x;
