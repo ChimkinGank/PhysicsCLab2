@@ -1,8 +1,9 @@
 public class Point{
   private double x,y;
+  private String name;
 
   public String toString(){
-    return "("+x+","+y+")";
+    return name+": ("+x+","+y+")";
   }
 
   public static double distance(Point a, Point b){
@@ -14,28 +15,30 @@ public class Point{
   }
 
   public static Point copy(Point p){
-    return new Point(p.x,p.y);
+    return new Point(p.x,p.y,p.name);
   }
 
 
-  public Point(double X, double Y){
+  public Point(double X, double Y, String name){
     x=X;
     y=Y;
+    this.name=name;
   }
   public Point(Point p){
     x= p.x;
     y= p.y;
+    name = p.name;
   }
-  public static add(Point other){
+  public void add(Point other){
     x=x+other.x;
-      y+other.y;
+      y=other.y;
   }
-  public static multiply(double c){
+  public void multiply(double c){
     x=c*x;
     y=c*y;
   }
-  public static normalize(){
-    a=Math.sqrt(x*x+y*y);
+  public void normalize(){
+    double a=Math.sqrt(x*x+y*y);
     multiply(1.0/a);
   }
   public double getX(){
